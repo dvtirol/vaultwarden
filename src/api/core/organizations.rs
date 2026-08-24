@@ -2473,6 +2473,7 @@ async fn get_groups_data(
         has_full_access
     } else {
         has_full_access
+            || headers.membership.atype == MembershipType::Manager
             || Collection::has_manageable_collection_by_user(&org_id, &headers.membership.user_uuid, &conn).await
     };
     if !allowed {
